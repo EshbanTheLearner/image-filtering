@@ -15,20 +15,18 @@ def show_image(image):
     plt.yticks([])
     plt.show()
 
-def plot_comparison(original, filtered, filter_name="Filtered", grayscale=False):
+def plot_comparison(original, filtered, filter_name="Filtered"):
     plt.figure(figsize=(11, 6))
-    plt.subplots(121)
-    if grayscale:
-        plt.imshow(original, cmap="gray")
-    else:
-        plt.imshow(cv2.cvtColor(original, cv2.COLOR_HSV2RGB))
-    plt.title("Original")
+    plt.subplot(1, 2, 1), plt.imshow(cv2.cvtColor(original, cv2.COLOR_HSV2RGB)), plt.title("Original")
     plt.xticks([]), plt.yticks([])
-    plt.subplots(122)
-    if grayscale:
-        plt.imshow(filtered, cmap="gray")
-    else:
-        plt.imshow(cv2.cvtColor(filtered, cv2.COLOR_HSV2RGB))
-    plt.title(f"{filter_name}")
+    plt.subplot(1, 2, 2), plt.imshow(cv2.cvtColor(filtered, cv2.COLOR_HSV2RGB)), plt.title(f"{filter_name}")
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+
+def plot_comparison_grayscale(original, filtered, filter_name="Filtered"):
+    plt.figure(figsize=(11, 6))
+    plt.subplot(1, 2, 1), plt.imshow(original, cmap="gray"), plt.title("Original")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(1, 2, 2), plt.imshow(filtered, cmap="gray"), plt.title(f"{filter_name}")
     plt.xticks([]), plt.yticks([])
     plt.show()
