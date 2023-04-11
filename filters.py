@@ -38,7 +38,21 @@ def apply_median_filter_grayscale(image, kernel_size=9):
     new_image = cv2.medianBlur(image, kernel_size)
     plot_comparison_grayscale(image, new_image)
 
-def conservative_smoothing(image, kernel_size=9):
+def apply_laplacian(image):
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    filter = cv2.Laplacian(image, cv2.CV_64F)
+    new_image = image + filter
+    plot_comparison(image, new_image, "Laplacian Filter")
+
+def apply_laplacian_grayscale(image):
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    filter = cv2.Laplacian(image, cv2.CV_64F)
+    new_image = image + filter
+    plot_comparison_grayscale(image, new_image, "Laplacian Filter")
+
+def apply_conservative_smoothing(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     temp = []
@@ -69,7 +83,7 @@ def conservative_smoothing(image, kernel_size=9):
             temp = []
     plot_comparison(image, new_image)
 
-def conservative_smoothing_grayscale(image, kernel_size=9):
+def apply_conservative_smoothing_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     temp = []
