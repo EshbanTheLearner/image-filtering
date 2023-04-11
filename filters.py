@@ -24,3 +24,15 @@ def apply_gaussian_filter_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     new_image = cv2.GaussianBlur(image, (kernel_size, kernel_size), 0)
     plot_comparison_grayscale(image, new_image)
+
+def apply_median_filter(image, kernel_size=9):
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    new_image = cv2.medianBlur(image, kernel_size)
+    plot_comparison(image, new_image, "Median Filter")
+
+def apply_median_filter_grayscale(image, kernel_size=9):
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    new_image = cv2.medianBlur(image, kernel_size)
+    plot_comparison_grayscale(image, new_image)
