@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+from PIL import Image, ImageFilter
 from utils import *
 
 def apply_mean_filter(image, kernel_size=9):
@@ -82,6 +83,11 @@ def apply_conservative_smoothing(image, kernel_size=9):
                 new_image[i, j] = min_value
             temp = []
     plot_comparison(image, new_image)
+
+def apply_unsharp_filter_grayscale(image):
+    image = Image.fromarray(image.astype("uint8"))
+    new_image = image.filter(ImageFilter.UnsharpMask(radius=2, percent=150))
+    plot_comparison_grayscale(image, new_image)
 
 def apply_conservative_smoothing_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
