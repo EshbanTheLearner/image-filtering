@@ -25,7 +25,7 @@ def apply_gaussian_filter_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     new_image = cv2.GaussianBlur(image, (kernel_size, kernel_size), 0)
-    plot_comparison_grayscale(image, new_image)
+    plot_comparison_grayscale(image, new_image, "Gaussian Filter")
 
 def apply_median_filter(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -37,7 +37,7 @@ def apply_median_filter_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     new_image = cv2.medianBlur(image, kernel_size)
-    plot_comparison_grayscale(image, new_image)
+    plot_comparison_grayscale(image, new_image, "Median Filter")
 
 def apply_laplacian(image):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -87,7 +87,7 @@ def apply_conservative_smoothing(image, kernel_size=9):
 def apply_unsharp_filter_grayscale(image):
     image = Image.fromarray(image.astype("uint8"))
     new_image = image.filter(ImageFilter.UnsharpMask(radius=2, percent=150))
-    plot_comparison_grayscale(image, new_image)
+    plot_comparison_grayscale(image, new_image, "Unsharp Filter")
 
 def apply_conservative_smoothing_grayscale(image, kernel_size=9):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
